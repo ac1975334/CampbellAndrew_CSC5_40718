@@ -3,7 +3,7 @@
  * Author: Andrew Campbell
  *
  * Created on January 14, 2015, 11:54 PM
-  * Purpose: Savitch 9thEd Chap2 ProgProj2
+  * Purpose: Savitch 9thEd Chap2 ProgProj3
  */
 //System Libraries
 #include <iostream>
