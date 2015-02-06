@@ -23,6 +23,9 @@ void prntBrd(int [4][COL]);
 bool moveNum(int [4][COL], int);
 bool gameWon(int [4][COL], int [4][COL]);
 int bot(int [4][COL]);
+bool winSpot (int [4][COL], int);
+
+
 
 int main(int argc, char** argv) {
     //seed random number
@@ -36,6 +39,7 @@ int main(int argc, char** argv) {
     int board[4][COL] = {0}, move = 0,sChoice = 0;
     int winBoard[4][COL] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0};
     unsigned int moves = 0;
+    cout<<winBoard[2];
     cout<<"Press 1 to begin playing Sliding Puzzle or 2 to view winning puzzle"<<endl;
     cin>> sChoice;
     switch(sChoice) {
@@ -50,7 +54,7 @@ int main(int argc, char** argv) {
     
 
     do {
-        prntBrd(board);
+        //prntBrd(board);
         //do loop so if invalid move entered can enter another move
         do {
             cout<<"Enter the number you would like to have moved: "<<endl;
@@ -61,7 +65,7 @@ int main(int argc, char** argv) {
         //cout<<bot(board);
         moves++;
         cout<<moves<<endl;
-        //if (moves%100==0)cin>>sChoice;
+        if (moves%1000==0) prntBrd(board);
         won = gameWon(board, winBoard);
     } while (won==false);
 
@@ -172,4 +176,7 @@ int bot (int t[4][COL]) {
         
     } while (toBeMoved == 0);
     return toBeMoved;
+}bool winSpot (int wTbl[4][COL], int n) {
+    if wTbl[(n / 4)][n % 4) - 1]
+    
 }
