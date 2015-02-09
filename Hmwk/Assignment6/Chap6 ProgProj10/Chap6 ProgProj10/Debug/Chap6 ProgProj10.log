@@ -1,0 +1,15 @@
+﻿Build started 2/8/2015 11:28:38 PM.
+     1>Project "C:\cplusplushw\CampbellAndrew_CSC5_40718\Hmwk\Assignment6\Chap6 ProgProj10\Chap6 ProgProj10\Chap6 ProgProj10.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
+         Source.cpp
+     1>c:\cplusplushw\campbellandrew_csc5_40718\hmwk\assignment6\chap6 progproj10\chap6 progproj10\source.cpp(45): error C2664: 'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::get(std::basic_streambuf<char,std::char_traits<char>> &,_Elem)' : cannot convert argument 1 from 'int' to 'char &'
+                 with
+                 [
+                     _Elem=char
+                 ]
+     1>Done Building Project "C:\cplusplushw\CampbellAndrew_CSC5_40718\Hmwk\Assignment6\Chap6 ProgProj10\Chap6 ProgProj10\Chap6 ProgProj10.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.27
