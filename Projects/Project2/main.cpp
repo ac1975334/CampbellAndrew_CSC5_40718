@@ -22,9 +22,9 @@ void arySet(int [4][COL]);
 void prntBrd(int [4][COL]);
 bool moveNum(int [4][COL], int);
 bool gameWon(int [4][COL], int [4][COL]);
+int winBoard[4][COL] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0};
 int bot(int [4][COL]);
-bool winSpot (int [4][COL], int);
-
+bool winSpot (int, int [4][COL]);  //determines if the number is in winning spot
 int main(int argc, char** argv) {
     //seed random number
     srand(static_cast<unsigned int>(time(0)));
@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
     bool moveOk = false, won = true;
     int board[4][COL] = {0}, move = 0,sChoice = 0;
     int winBoard[4][COL] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0};
-    unsigned short moves = 0;
+    unsigned int moves = 0;
     cout<<"Press 1 to begin playing Sliding Puzzle or 2 to view winning puzzle"<<endl;
     cin>> sChoice;
     switch(sChoice) {
@@ -48,18 +48,22 @@ int main(int argc, char** argv) {
     }
     //create board
     arySet(board);
-    
+    //cout<< winSpot(12);
 
     do {
-        prntBrd(board);
+      //  prntBrd(board);
         //do loop so if invalid move entered can enter another move
         do {
-            cout<<"Enter the number you would like to have moved: "<<endl;
-            cin>>move;
+            //cout<<"Enter the number you would like to have moved: "<<endl;
+            move = bot(board);
             moveOk = moveNum(board, move);
             if (moveOk==false) cout<<"Number must be next to empty square."<<endl;
         }while (moveOk==false);
         moves++;
+        if (moves%100000==1){
+            prntBrd(board);
+            cout<<moves<<endl;
+        }
         won = gameWon(board, winBoard);
     } while (won==false);
 
@@ -151,6 +155,8 @@ int bot (int t[4][COL]) {
     int choiceNumbers [] = {0,0,0,0};
     for (int i = 0; i != 4; i++){
         //cout<<x<<endl;
+       
+        //finding the spot of blank/0 in array
         for (int j = 0; j != 4; j++) {
             if (t[i][j] == 0){
                 x=i;
@@ -158,6 +164,7 @@ int bot (int t[4][COL]) {
             } 
         }
     }
+    //checking if against box borders and not to try and move outside of it
     if (x > 0) choiceNumbers[0] = t[x-1][y];
     if (x < 3) choiceNumbers[1] = t[x+1][y];
     if (y > 0) choiceNumbers[2] = t[x][y-1];
@@ -168,9 +175,17 @@ int bot (int t[4][COL]) {
     do {
         toBeMoved = choiceNumbers[rand()%4];
         
-    } while (toBeMoved == 0);
+    } while ((toBeMoved == 0)||(winSpot(toBeMoved, t) == true));
+    //if (winSpot(toBeMoved, t) == true) cout<<"winSpot Hit";
     return toBeMoved;
-}bool winSpot (int wTbl[4][COL], int n) {
-    if wTbl[(n / 4)][n % 4) - 1]
-    
+}
+bool winSpot (int n,int tbl[4][COL]) {
+    int winBoard[4][COL] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0}, y=n;  
+    if ((n % 4)==0)y-=1; 
+   // cout<<n<<" vs "<<(tbl[(n / 4)][(n % 4) - 1])<<endl;
+    if ((tbl[(y / 4)][(y % 4) - 1]) == n){ //checks row/column of the table against input
+        //cout<< "True";
+        return true;
+    }
+    return false;
 }
