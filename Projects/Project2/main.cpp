@@ -22,6 +22,8 @@ void arySet(int [4][COL]);
 void prntBrd(int [4][COL]);
 bool moveNum(int [4][COL], int);
 bool gameWon(int [4][COL], int [4][COL]);
+int bot(int [4][COL]);
+bool winSpot (int [4][COL], int);
 
 int main(int argc, char** argv) {
     //seed random number
@@ -143,4 +145,32 @@ bool gameWon(int t[4][COL], int win[4][COL]){
         }
     }
     return true;
+}
+int bot (int t[4][COL]) {
+    int x = 0, y = 0, toBeMoved = 0;
+    int choiceNumbers [] = {0,0,0,0};
+    for (int i = 0; i != 4; i++){
+        //cout<<x<<endl;
+        for (int j = 0; j != 4; j++) {
+            if (t[i][j] == 0){
+                x=i;
+                y=j;
+            } 
+        }
+    }
+    if (x > 0) choiceNumbers[0] = t[x-1][y];
+    if (x < 3) choiceNumbers[1] = t[x+1][y];
+    if (y > 0) choiceNumbers[2] = t[x][y-1];
+    if (y < 3) choiceNumbers[3] = t[x][y+1];
+    
+    //cout<<x<<"  "<<y<<" :: "<<choiceNumbers[0]<<choiceNumbers[1]<<choiceNumbers[2]
+           // <<choiceNumbers[3]<<endl;
+    do {
+        toBeMoved = choiceNumbers[rand()%4];
+        
+    } while (toBeMoved == 0);
+    return toBeMoved;
+}bool winSpot (int wTbl[4][COL], int n) {
+    if wTbl[(n / 4)][n % 4) - 1]
+    
 }
